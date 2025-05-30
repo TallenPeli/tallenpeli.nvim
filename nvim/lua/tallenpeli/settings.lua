@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
 vim.opt.syntax = "on"
+-- Uncomment this is you want to have 'y' 'd' 'x' 'p' all copy and paste to system clipboard instead of the vim buffer.
 -- vim.opt.clipboard = "unnamedplus"
 
 --[[
