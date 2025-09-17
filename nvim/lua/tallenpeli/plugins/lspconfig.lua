@@ -4,11 +4,12 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "folke/neodev.nvim", opts = {} },
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
 	},
 	config = function()
-		local nvim_lsp = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
-
+		local nvim_lsp = require("lspconfig")
 		local protocol = require("vim.lsp.protocol")
 
 		local on_attach = function(client, bufnr)
@@ -26,7 +27,7 @@ return {
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		mason_lspconfig.setup_handlers({
+		mason_lspconfig.setup({
 			function(server)
 				nvim_lsp[server].setup({
 					capabilities = capabilities,
