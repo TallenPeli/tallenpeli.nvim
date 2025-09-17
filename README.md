@@ -21,5 +21,5 @@ This configuration uses standard vim/neovim keybinds.
 
 ![Telescope File](./img/telescope.png)
 ![Telescope Grep](./img/grep.png)
-![Supermaven](./img/supermave.png)
+![Supermaven](./img/supermaven.png)
 ![Autocomplete](./img/autocomplete.png)
