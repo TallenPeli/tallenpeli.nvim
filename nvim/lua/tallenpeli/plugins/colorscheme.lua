@@ -6,10 +6,10 @@ return {
 		vim.cmd("colorscheme vscode")
 	end,
 
-    "comfysage/evergarden",
-    lazy = false,
-    priority = 1000,
-    config = function()
-        vim.cmd("colorscheme evergarden")
-    end,
+    -- "comfysage/evergarden",
+    -- lazy = false,
+    -- priority = 1000,
+    -- config = function()
+    --     vim.cmd("colorscheme evergarden")
+    -- end,
 }
