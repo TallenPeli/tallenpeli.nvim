@@ -1,8 +1,4 @@
 return {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8d44679cff336950fabe07620398afe37ceb04d5
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -21,8 +17,6 @@ return {
 		local cmp = require("cmp")
 		local lspkind = require("lspkind")
 		local luasnip = require("luasnip")
-<<<<<<< HEAD
-=======
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -63,7 +57,7 @@ return {
       highlight! default link CmpItemKind CmpItemMenuDefault
     ]])
 	end,
-=======
+
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
@@ -82,7 +76,6 @@ return {
         local cmp = require("cmp")
         local lspkind = require("lspkind")
         local luasnip = require("luasnip")
->>>>>>> 8d44679cff336950fabe07620398afe37ceb04d5
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -122,10 +115,5 @@ return {
       set completeopt=menuone,noinsert,noselect
       highlight! default link CmpItemKind CmpItemMenuDefault
     ]])
-<<<<<<< HEAD
 	end,
-=======
-    end,
->>>>>>> 33935393b7f45202c46dc008eda56b8e74595332
->>>>>>> 8d44679cff336950fabe07620398afe37ceb04d5
 }
