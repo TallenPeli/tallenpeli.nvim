@@ -10,8 +10,14 @@ This configuration is "minimal", but has a lot of nice features built in.
 
 You can open telescope and it's different search types by using the following keybinds.
 
-- `tfg` Opens the grep search view
-- `tff` Opens the file search view
+- `<Space>g` Opens the grep search view
+- `<Space>F` Opens the file search view
+- `<Space>b` Opens the buffers search view
+- `<Space>h` Opens the help search view
+
+**Other Keybinds**
+
+- `<Space>e` Opens the error/debug line
 
 **Other Keybinds**
 

@@ -8,7 +8,7 @@ vim.opt.tabstop = 4
 
 vim.opt.syntax = "on"
 
-vim.g.mapleader = "t"
+vim.g.mapleader = " " -- set leader to space
 
 -- comment this is you want to have 'y' 'd' 'x' 'p' all copy and paste to the vim buffer instead of the system clipboard.
 vim.opt.clipboard = "unnamedplus"
@@ -27,4 +27,3 @@ if vim.fn.executable("wl-copy") == 1 then
 		cache_enabled = 0,
 	}
 end
-
