@@ -20,20 +20,21 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 1. Move/Copy and make the update script executable
+# 1. Move the update script
 if [ -f "update.sh" ]; then
     echo "Moving update.sh script into $NVIM_CONFIG_DIR"
-    cp update.sh "$NVIM_CONFIG_DIR/"
+    mv update.sh "$NVIM_CONFIG_DIR/"
     chmod +x "$NVIM_CONFIG_DIR/update.sh"
-    echo "Status: update.sh copied and executable."
+    echo "Status: update.sh moved and executable."
 else
     echo "Warning: update.sh script not found in the current directory. Skipping update script install."
 fi
 
-# 2. Move/Copy the nvim folder contents
+# 2. Copy the nvim folder contents
 if [ -d "nvim" ]; then
     echo "Merging contents of nvim/ folder into $NVIM_CONFIG_DIR"
     # Using rsync to copy contents safely and recursively, merging directories.
+    # The --delete-after flag is omitted here as this is a one-time install/merge.
     rsync -av nvim/ "$NVIM_CONFIG_DIR"
 
     if [ $? -eq 0 ]; then
