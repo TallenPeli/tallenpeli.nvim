@@ -1,3 +1,5 @@
+vim.opt.termguicolors = true
+
 return {
 	{
 		"Mofiqul/vscode.nvim",
@@ -14,7 +16,6 @@ return {
 		priority = 1000,
 	},
 	{
-
 		"Mofiqul/adwaita.nvim",
 		lazy = false,
 		priority = 1000,
