@@ -23,7 +23,7 @@ fi
 # 1. Move the update script
 if [ -f "./scripts/update.sh" ]; then
     echo "Moving update.sh script into $NVIM_CONFIG_DIR"
-    mv ./scripts/update.sh "$NVIM_CONFIG_DIR/"
+    cp ./scripts/update.sh "$NVIM_CONFIG_DIR/"
     chmod +x "$NVIM_CONFIG_DIR/update.sh"
     echo "Status: update.sh moved and executable."
 else
