@@ -4,16 +4,9 @@
 # NVIM Configuration Manager v1.0
 # =======================================================
 
-# --- Configuration Section ---
-# Source repository
 REPO_URL="https://github.com/TallenPeli/tallenpeli.nvim"
-
-# Clone location (Holding area for the remote source)
 CLONE_DIR="$HOME/tallenpeli_repo"
-
-# Destination location (Active user configuration)
 NVIM_CONFIG_DIR="$HOME/.config/nvim"
-# -----------------------------
 
 echo "Initiating system routine: Neovim configuration sync"
 echo "-------------------------------------------------"

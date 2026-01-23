@@ -21,13 +21,13 @@ if [ $? -ne 0 ]; then
 fi
 
 # 1. Move the update script
-if [ -f "update.sh" ]; then
+if [ -f "./scripts/update.sh" ]; then
     echo "Moving update.sh script into $NVIM_CONFIG_DIR"
-    mv update.sh "$NVIM_CONFIG_DIR/"
+    mv ./scripts/update.sh "$NVIM_CONFIG_DIR/"
     chmod +x "$NVIM_CONFIG_DIR/update.sh"
     echo "Status: update.sh moved and executable."
 else
-    echo "Warning: update.sh script not found in the current directory. Skipping update script install."
+    echo "Warning: update.sh script not found in the scripts directory. Skipping update script install."
 fi
 
 # 2. Copy the nvim folder contents
