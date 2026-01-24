@@ -178,6 +178,15 @@ This configuration uses standard vim/neovim keybinds.
 > [!TIP]
 > Keybinds are configured in `nvim/lua/tallenpeli/maps.lua`
 
+## Themes
+
+- [VSCode](https://github.com/Mofiqul/vscode.nvim)
+- [Adwaita](https://github.com/Mofiqul/adwaita.nvim)
+- [Evergreen](https://github.com/comfysage/evergreen)
+- [Catppuccin](https://github.com/catppuccin/nvim)
+
+If you would like to add a theme to this config, please open an issue and I will add it if I like it.
+
 ## Screenshots
 
 ![Sidebar](./img/sidebar.png)
