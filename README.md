@@ -27,6 +27,7 @@ tallenpeli.nvim includes a suite of features for seamless programming without ha
         <li>rust_analyzer (rust)</li>
         <li>gopls (go)</li>
         <li>lua_ls (lua)</li>
+        <li>jdtls/<li>
     </ul>
 
 </details>
@@ -189,6 +190,7 @@ If you would like to add a theme to this config, please open an issue and I will
 
 ## Screenshots
 
+![Alpha](./img/alpha.png
 ![Sidebar](./img/sidebar.png)
 ![Evergarden Colorscheme](./img/evergarden.png)
 ![Markdown Preview](./img/markdown.png)

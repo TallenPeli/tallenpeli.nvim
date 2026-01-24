@@ -20,6 +20,7 @@ return {
 				"rust_analyzer",
 				"gopls",
 				"lua_ls",
+				"jdtls",
 			},
 		})
 
@@ -27,7 +28,7 @@ return {
 			ensure_installed = {
 				"prettier",
 				"stylua", -- lua formatter
-				"isort", -- python formatter
+				"isort", -- python formatter for inports
 				"black", -- python formatter
 				"pylint",
 				"eslint_d",
