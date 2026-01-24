@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPO_URL="https://github.com/TallenPeli/tallenpeli.nvim"
-CLONE_DIR="$HOME/tallenpeli_repo"
+CLONE_DIR="$HOME/.local/share/nvim/tallenpeli/"
 NVIM_CONFIG_DIR="$HOME/.config/nvim"
 
 # check if clone directory exists
@@ -16,7 +16,7 @@ else
     REMOTE=$(git rev-parse @{u})
 
     if [ "$LOCAL" = "$REMOTE" ]; then
-        echo "Configuration is already up to date."
+        echo "Up to date."
         exit 0
     fi
 
@@ -24,11 +24,9 @@ else
     git pull
 fi
 
-echo "Merging updated configuration..."
 mkdir -p "$NVIM_CONFIG_DIR"
 rsync -av --delete-after "$CLONE_DIR/nvim/" "$NVIM_CONFIG_DIR"
 cp "$CLONE_DIR/scripts/update.sh" "$NVIM_CONFIG_DIR/update.sh"
 
-echo "------------------"
 echo "Update successful!"
-return 1
+exit 1
