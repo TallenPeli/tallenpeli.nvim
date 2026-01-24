@@ -194,6 +194,3 @@ If you would like to add a theme to this config, please open an issue and I will
 ![Markdown Preview](./img/markdown.png)
 ![Telescope](./img/telescope.png)
 ![Supermaven](./img/supermaven.png)
-
-
-test
