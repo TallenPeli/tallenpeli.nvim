@@ -20,9 +20,7 @@ return {
 					end
 				end,
 				on_exit = function(_, exit_code)
-					if exit_code == 0 then
-						print("tallenpeli.nvim: Up to date")
-					else
+					if exit_code ~= 0 then
 						print("tallenpeli: Update failed with code: " .. exit_code)
 					end
 				end,
