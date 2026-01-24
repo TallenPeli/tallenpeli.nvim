@@ -33,55 +33,90 @@ tallenpeli.nvim includes a suite of features for seamless programming without ha
 
 ### **Formatters/Linters (mason.nvim)**
 
-- prettier (javascript/typescript/tsx/jsx)
-- stylua (lua)
-- isort
-- black
-- pylint (python)
-- eslint_d (javascript/typescript/tsx/jsx)
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li>prettier (javascript/typescript/tsx/jsx)</li>
+        <li>stylua (lua)</li>
+        <li>isort</li>
+        <li>black</li>
+        <li>pylint (python)</li>
+        <li>eslint_d (javascript/typescript/tsx/jsx)</li>
+    </ul>
+</details>
 
 ### **Telescope**
 
-- Telescope
-- Telescope Grep
-- Telescope File
-- Telescope Buffers
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li>Telescope</li>
+        <li>Telescope Grep</li>
+        <li>Telescope File</li>
+        <li>Telescope Buffers</li>
+    </ul>
+</details>
 
 ### **Autocomplete**
 
-- nvim-cmp
-- nvim-cmp-buffer
-- nvim-cmp-path
-- nvim-cmp-nvim-lsp
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li>nvim-cmp</li>
+        <li>nvim-cmp-buffer</li>
+        <li>nvim-cmp-path</li>
+        <li>nvim-cmp-nvim-lsp</li>
+    </ul>
+</details>
 
 ### **Colorscheme**
 
-- VSCode
-- Adwaita
-- Evergreen
-- Catppuccin
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li>VSCode</li>
+        <li>Adwaita</li>
+        <li>Evergreen</li>
+        <li>Catppuccin</li>
+    </ul>
+</details>
 
 ### **Developer Tools**
 
-- Live Preview (for HTML, markdown, svg, asciidoc)
-- Render Markdown
-- Supermaven (AI autocomplete)
-- gitsigns
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li>Live Preview (for HTML, markdown, svg, asciidoc)</li>
+        <li>Render Markdown</li>
+        <li>Supermaven (AI autocomplete)</li>
+        <li>gitsigns</li>
+    </ul>
+</details>
 
 ### **Quality of Life**
 
-- autopairs/autotag
-- barbar
-- cmp
-- colorizer
-- lualine
-- nvim-tree
-- nvim-web-devicons
-- nvim-lspconfig
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li>autopairs/autotag</li>
+        <li>barbar</li>
+        <li>cmp</li>
+        <li>colorizer</li>
+        <li>lualine</li>
+        <li>nvim-tree</li>
+        <li>nvim-web-devicons</li>
+        <li>nvim-lspconfig</li>
+    </ul>
+</details>
 
 ### **Other**
 
-- **Discord Rich Presence** (can be disabled by deleting `nvim/lua/tallenpeli/plugins/discord-rpc.lua`)
+<details>
+    <summary>Click to expand</summary>
+    <ul>
+        <li><strong>Discord Rich Presence</strong> (can be disabled by deleting <code>nvim/lua/tallenpeli/plugins/discord-rpc.lua</code>)</li>
+    </ul>
+</details>
 
 > [!TIP]
 > You can find the full list of plugins in `nvim/lua/tallenpeli/plugins`
@@ -145,11 +180,8 @@ This configuration uses standard vim/neovim keybinds.
 
 ## Screenshots
 
-![Telescope File](./img/telescope.png)
-![Telescope Grep](./img/grep.png)
+![Sidebar](./img/sidebar.png)
+![Evergarden Colorscheme](./img/evergarden.png)
+![Markdown Preview](./img/markdown.png)
+![Telescope](./img/telescope.png)
 ![Supermaven](./img/supermaven.png)
-![Autocomplete](./img/autocomplete.png)
-
-```
-
-```

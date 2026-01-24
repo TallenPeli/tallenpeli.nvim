@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =======================================================
-# NVIM Local Installer v1.0
+# NVIM Local Installer v1.1
 # =======================================================
 
 # --- Configuration Section ---
