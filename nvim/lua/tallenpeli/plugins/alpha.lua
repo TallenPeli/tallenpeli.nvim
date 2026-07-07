@@ -36,9 +36,9 @@ return {
 
 		dashboard.section.buttons.val = {
 			dashboard.button("n", "  New Buffer", ":enew <CR>"),
-			dashboard.button("F", "  Find File", ":Telescope find_files <CR>"),
-			dashboard.button("g", "  Live Grep", ":Telescope live_grep <CR>"),
-			dashboard.button("b", "  Buffers", ":Telescope buffers <CR>"),
+			dashboard.button("F", "  Find File", ":FzfLua files<CR>"),
+			dashboard.button("g", "  Live Grep", ":FzfLua live_grep<CR>"),
+			dashboard.button("b", "  Buffers", ":FzfLua buffers<CR>"),
 			dashboard.button("s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
 			dashboard.button("u", "󰚰  Update Config", ":ConfigUpdate <CR>"),
 			dashboard.button("q", "󰅙  Quit", ":qa<CR>"),

@@ -1,6 +1,31 @@
 return {
-    "tronikelis/ts-autotag.nvim",
-    opts = {},
-    -- ft = {}, optionally you can load it only in jsx/html
-    event = "VeryLazy",
+	"windwp/nvim-ts-autotag",
+	event = { "BufReadPre", "BufNewFile" },
+	opts = {
+		opts = {
+			enable_close = true,
+			enable_rename = true,
+			enable_close_on_slash = true,
+		},
+		filetypes = {
+			"html",
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+			"svelte",
+			"vue",
+			"tsx",
+			"jsx",
+			"rescript",
+			"xml",
+			"php",
+			"markdown",
+			"astro",
+			"glimmer",
+			"handlebars",
+			"hbs",
+			"ejs",
+		},
+	},
 }

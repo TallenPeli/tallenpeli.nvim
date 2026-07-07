@@ -3,7 +3,6 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		{ "folke/neodev.nvim", opts = {} },
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 	},
@@ -15,14 +14,8 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local on_attach = function(client, bufnr)
-			if client.server_capabilities.documentFormattingProvider then
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = vim.api.nvim_create_augroup("Format", { clear = true }),
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format()
-					end,
-				})
+			if client.name == "html" or client.name == "cssls" then
+				client.server_capabilities.documentFormattingProvider = false
 			end
 		end
 
