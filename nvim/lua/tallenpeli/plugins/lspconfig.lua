@@ -23,6 +23,24 @@ return {
 
 		mason.setup()
 
+		if vim.fn.executable("nixd") == 1 then
+			nvim_lsp.nixd.setup({
+				cmd = { "nixd" },
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					nixd = {
+						nixpkgs = {
+							expr = "import <nixpkgs> { }",
+						},
+						formatting = {
+							command = { "nixfmt" },
+						},
+					},
+				},
+			})
+		end
+
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"ts_ls",
