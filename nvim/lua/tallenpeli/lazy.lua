@@ -12,4 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
-require("lazy").setup("tallenpeli.plugins")
+require("lazy").setup("tallenpeli.plugins", {
+	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
+})
