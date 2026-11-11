@@ -19,5 +19,31 @@ vim.keymap.set("n", "<leader>ai", function()
 	end
 end)
 
+-- LSP
+vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
+
+-- Tab to cycle forward, Shift-Tab to cycle backward through completion items
+vim.keymap.set("i", "<Tab>", function()
+	if vim.fn.pumvisible() == 1 then
+		return "<C-n>"
+	end
+	return "<Tab>"
+end, { expr = true, silent = true })
+
+vim.keymap.set("i", "<S-Tab>", function()
+	if vim.fn.pumvisible() == 1 then
+		return "<C-p>"
+	end
+	return "<S-Tab>"
+end, { expr = true, silent = true })
+
+-- Enter selects highlighted completion item; regular newline if nothing is selected
+vim.keymap.set("i", "<CR>", function()
+	if vim.fn.pumvisible() == 1 and vim.fn.complete_info({ "selected" }).selected ~= -1 then
+		return "<C-y>"
+	end
+	return "<CR>"
+end, { expr = true, silent = true })
+
 -- Other
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
