@@ -106,7 +106,7 @@ tallenpeli.nvim includes a suite of features for seamless programming without ha
         <li>lualine</li>
         <li>nvim-tree</li>
         <li>nvim-web-devicons</li>
-        <li>nvim-lspconfig</li>
+        <li>vim.lsp</li>
     </ul>
 </details>
 

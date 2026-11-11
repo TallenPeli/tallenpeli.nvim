@@ -67,10 +67,6 @@
     "branch": "master",
     "commit": "221ce6b2d999187044529f49da6554a92f740a96"
   },
-  "mason-lspconfig.nvim": {
-    "branch": "main",
-    "commit": "47059d71b42d74b0a1e9f61c1d99d301039c3b5b"
-  },
   "mason-tool-installer.nvim": {
     "branch": "main",
     "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc"
@@ -110,10 +106,6 @@
   "nvim-colorizer.lua": {
     "branch": "master",
     "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e"
-  },
-  "nvim-lspconfig": {
-    "branch": "master",
-    "commit": "d224a1920728ba129880efc700d4a0180ac4ecbb"
   },
   "nvim-treesitter": {
     "branch": "main",
