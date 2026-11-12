@@ -1,5 +1,6 @@
 return {
 	"saghen/blink.cmp",
+	version = "2.*",
 	dependencies = {
 		"saghen/blink.lib",
 		-- optional: provides snippets for the snippet source
