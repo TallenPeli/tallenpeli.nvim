@@ -1,6 +1,5 @@
 return {
 	"saghen/blink.cmp",
-	version = "2.*",
 	dependencies = {
 		"saghen/blink.lib",
 		-- optional: provides snippets for the snippet source
@@ -25,7 +24,7 @@ return {
 		-- C-k: Toggle signature help (if signature.enabled = true)
 		--
 		-- See :h blink-cmp-config-keymap for defining your own keymap
-		keymap = { preset = "enter" },
+		keymap = { preset = "default" },
 
 		-- (Default) Only show the documentation popup when manually triggered
 		completion = { documentation = { auto_show = true } },
