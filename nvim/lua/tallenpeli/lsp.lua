@@ -13,7 +13,6 @@ vim.lsp.config("nixd", {
 	cmd = { "nixd" },
 	filetypes = { "nix" },
 })
-
 vim.lsp.enable("nixd")
 
 -- QML
