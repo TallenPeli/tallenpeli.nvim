@@ -6,33 +6,5 @@ return {
 	},
 	config = function()
 		require("mason").setup()
-
-		require("mason-lspconfig").setup({
-			automatic_installation = true,
-			ensure_installed = {
-				"cssls",
-				"eslint",
-				"html",
-				"jsonls",
-				"ts_ls",
-				"pyright",
-				"clangd",
-				"rust_analyzer",
-				"gopls",
-				"lua_ls",
-				"jdtls",
-			},
-		})
-
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				"prettier",
-				"stylua", -- lua formatter
-				"isort", -- python formatter for inports
-				"black", -- python formatter
-				"pylint",
-				"eslint_d",
-			},
-		})
 	end,
 }

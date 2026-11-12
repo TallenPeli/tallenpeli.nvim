@@ -30,9 +30,9 @@ vim.lsp.config("qmlls", {
 vim.lsp.enable("qmlls")
 
 -- Lua
-vim.lsp.config("luals", {
-    cmd = { "lua-language-server" }
-    filetypes = { "lua", "luau" },
-    root_markers = { ".luarc.json" }
+vim.lsp.config("lua_ls", {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua", "luau" },
+	root_markers = { ".luarc.json" },
 })
-vim.lsp.enable("luals")
+vim.lsp.enable("lua_ls")
