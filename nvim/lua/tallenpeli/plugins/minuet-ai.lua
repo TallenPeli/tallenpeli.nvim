@@ -10,7 +10,8 @@ return {
 					api_key = "TERM",
 					name = "Ollama",
 					end_point = "http://localhost:11434/v1/completions",
-					model = "qwen2.5-coder:1.5b",
+					-- Change this to whatever model you want, this one is just fast on low-end hardware
+					model = "qwen2.5-coder:0.5b",
 					optional = {
 						max_tokens = 128,
 						top_p = 0.9,
@@ -20,8 +21,8 @@ return {
 			virtualtext = {
 				auto_trigger_ft = { "*" },
 				keymap = {
-					accept = "<A-A>",
-					accept_line = "<A-a>",
+					accept = "<C-a>",
+					accept_line = "<Tab>",
 					next = "<A-]>",
 					prev = "<A-[>",
 					dismiss = "<A-e>",
