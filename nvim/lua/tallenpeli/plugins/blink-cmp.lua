@@ -9,6 +9,23 @@ return {
 		require("blink.cmp").build():pwait()
 	end,
 
+	require("blink.cmp").setup({
+		cmdline = {
+			enabled = true,
+			keymap = {
+				preset = "cmdline",
+			},
+			completion = {
+				menu = {
+					auto_show = true,
+				},
+				ghost_text = {
+					enabled = true,
+				},
+			},
+		},
+	}),
+
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
