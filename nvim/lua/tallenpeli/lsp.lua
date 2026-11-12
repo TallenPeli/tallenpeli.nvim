@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Nix
-vim.lsp.config.nixd = {
+vim.lsp.config("nixd") = {
 	cmd = { "nixd" },
 	filetypes = { "nix" },
 }
@@ -27,3 +27,11 @@ vim.lsp.config("qmlls", {
 	end,
 })
 vim.lsp.enable("qmlls")
+
+-- Lua
+vim.lsp.config("luals", {
+    cmd = { "lua-language-server" }
+    filetypes = { "lua", "luau" },
+    root_markers = { ".luarc.json" }
+})
+vim.lsp.enable("luals")
