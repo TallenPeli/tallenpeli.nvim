@@ -27,22 +27,22 @@ return {
 		keymap = { preset = "enter" },
 
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "minuet" },
-			providers = {
-				minuet = {
-					name = "minuet",
-					module = "minuet.blink",
-					async = true,
-					timeout_ms = 3000,
-					score_offset = 50,
-				},
-			},
+			default = { "lsp", "path", "snippets", "buffer" },
+			-- providers = {
+			-- 	minuet = {
+			-- 		name = "minuet",
+			-- 		module = "minuet.blink",
+			-- 		async = true,
+			-- 		timeout_ms = 3000,
+			-- 		score_offset = 50,
+			-- 	},
+			-- },
 		},
 
-		completion = {
-			documentation = { auto_show = true },
-			trigger = { prefetch_on_insert = false },
-		},
+		-- completion = {
+		-- 	documentation = { auto_show = true },
+		-- 	trigger = { prefetch_on_insert = false },
+		-- },
 
 		fuzzy = { implementation = "rust" },
 	},
