@@ -26,16 +26,24 @@ return {
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		keymap = { preset = "enter" },
 
-		-- (Default) Only show the documentation popup when manually triggered
-		completion = { documentation = { auto_show = true } },
+		sources = {
+			default = { "lsp", "path", "snippets", "buffer", "minuet" },
+			providers = {
+				minuet = {
+					name = "minuet",
+					module = "minuet.blink",
+					async = true,
+					timeout_ms = 3000,
+					score_offset = 50,
+				},
+			},
+		},
 
-		-- (Default) list of enabled providers defined so that you can extend it
-		-- elsewhere in your config, without redefining it, due to `opts_extend`
-		sources = { default = { "lsp", "path", "snippets", "buffer" } },
+		completion = {
+			documentation = { auto_show = true },
+			trigger = { prefetch_on_insert = false },
+		},
 
-		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-		-- You may use a lua implementation instead by using `implementation = "lua"`
-		-- See the fuzzy documentation for more information
 		fuzzy = { implementation = "rust" },
 	},
 }
