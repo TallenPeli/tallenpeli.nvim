@@ -9,10 +9,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Nix
-vim.lsp.config("nixd") = {
+vim.lsp.config("nixd", {
 	cmd = { "nixd" },
 	filetypes = { "nix" },
-}
+})
+
 vim.lsp.enable("nixd")
 
 -- QML
