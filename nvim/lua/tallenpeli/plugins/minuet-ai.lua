@@ -18,6 +18,16 @@ return {
 					},
 				},
 			},
+
+			blink = {
+				enable_auto_complete = true,
+			},
+
+			lsp = {
+				completion = {
+					enable = false,
+				},
+			},
 		})
 	end,
 }
