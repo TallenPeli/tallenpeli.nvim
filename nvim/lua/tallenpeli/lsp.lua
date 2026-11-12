@@ -35,3 +35,29 @@ vim.lsp.config("lua_ls", {
 	root_markers = { ".luarc.json" },
 })
 vim.lsp.enable("lua_ls")
+
+-- Rust
+vim.lsp.config("rust-analyzer", {
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_markers = { "rust-project.json", ".rustc", "Cargo.toml" },
+})
+vim.lsp.enable("rust-analyzer")
+
+-- C/C++
+local clangd_cmd = {
+	"clangd",
+	"--background-index",
+	"--clang-tidy",
+}
+
+-- Check if the user if on NixOS
+if vim.fn.isdirectory("/nix/store") == 1 then
+	table.insert(clangd_cmd, "--query-driver=/nix/store/*-gcc-wrapper-*/bin/g++,/nix/store/*-gcc-wrapper-*/bin/gcc")
+end
+
+vim.lsp.config("clangd", {
+	cmd = clangd_cmd,
+	filetypes = { "c", "cc", "cpp", "c++", "objc", "objcpp" },
+})
+vim.lsp.enable("clangd")
