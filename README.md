@@ -190,7 +190,7 @@ If you would like to add a theme to this config, please open an issue and I will
 
 ## Screenshots
 
-![Alpha](./img/alpha.png
+![Alpha](./img/alpha.png)
 ![Sidebar](./img/sidebar.png)
 ![Evergarden Colorscheme](./img/evergarden.png)
 ![Markdown Preview](./img/markdown.png)

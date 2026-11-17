@@ -1,4 +1,4 @@
-require("tallenpeli.settings")
+require("tallenpeli.options")
 require("tallenpeli.lazy")
-require("tallenpeli.maps")
+require("tallenpeli.keymaps")
 require("tallenpeli.lsp")

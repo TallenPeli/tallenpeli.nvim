@@ -1,63 +1,106 @@
--- Automatically enable native completions when an LSP attached to a buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if client and client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-		end
-	end,
-})
+-- =============================================================================
+-- Native LSP Configuration (Neovim 0.11+)
+-- =============================================================================
+-- How to add a new Language Server:
+--   1. Add an entry to the `servers` table below:
+--        <language_name> = "<executable_name>"
+--      Neovim will automatically check if `<executable_name>` is on your PATH
+--      and ignore it if it is not installed.
+--   2. Define the server using the exact same `<config_name>`:
+--        vim.lsp.config("<config_name>", {
+--            cmd = { "<executable_name>" },
+--            filetypes = { "<ft1>", "<ft2>" },
+--            root_markers = { "<root_file>", ".git" },
+--        })
+--
+-- Further Reading & Reference Sources:
+--   - Neovim Built-in Docs:  :help lsp-config  |  :help vim.lsp.config()
+--                            :help lsp-quickstart  |  :help vim.lsp.completion
+--   - Official Server Configs (reference cmd, filetypes, & root_markers):
+--     https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+--   - nvim-lspconfig Server Docs (full list of language servers & settings):
+--     https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+-- =============================================================================
 
--- Nix
-vim.lsp.config("nixd", {
-	cmd = { "nixd" },
-	filetypes = { "nix" },
-})
-vim.lsp.enable("nixd")
-
--- QML
-vim.lsp.config("qmlls", {
-	cmd = { "qmlls" },
-	filetypes = { "qml", "qmljs" },
-	root_markers = { ".qmlls.ini", "shell.qml", ".git" },
-	on_init = function(client, _)
-		if client.server_capabilities then
-			client.server_capabilities.semanticTokensProvider = nil
-		end
-	end,
-})
-vim.lsp.enable("qmlls")
-
--- Lua
-vim.lsp.config("lua_ls", {
-	cmd = { "lua-language-server" },
-	filetypes = { "lua", "luau" },
-	root_markers = { ".luarc.json" },
-})
-vim.lsp.enable("lua_ls")
-
--- Rust
-vim.lsp.config("rust-analyzer", {
-	cmd = { "rust-analyzer" },
-	filetypes = { "rust" },
-	root_markers = { "rust-project.json", ".rustc", "Cargo.toml" },
-})
-vim.lsp.enable("rust-analyzer")
-
--- C/C++
-local clangd_cmd = {
-	"clangd",
-	"--background-index",
-	"--clang-tidy",
+-- Language Servers
+local servers = {
+    -- <language_name> = "<executable_name>"
+    nix = "nixd",
+    qml = "qmlls",
+    lua = "lua-language-server",
+    rust = "rust-analyzer",
+    c_cpp = "clangd",
 }
 
--- Check if the user if on NixOS
+-- Automatically enable native completions when an LSP attached to a buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client:supports_method("textDocument/completion") then
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        end
+    end,
+
+})
+
+vim.lsp.config("nix", {
+    cmd = { servers.nix },
+    filetypes = { "nix" },
+    root_markers = { "flake.nix", ".git" }
+})
+
+vim.lsp.config("qml", {
+    cmd = { servers.qml },
+    filetypes = { "qml", "qmljs" },
+    root_markers = { ".qmlls.ini", "shell.qml", ".git" },
+    on_init = function(client, _)
+        if client.server_capabilities then
+            client.server_capabilities.semanticTokensProvider = nil
+        end
+    end,
+})
+
+vim.lsp.config("lua", {
+    cmd = { servers.lua },
+    filetypes = { "lua", "luau" },
+    root_markers = { ".luarc.json" },
+})
+
+vim.lsp.config("rust", {
+    cmd = { servers.rust },
+    filetypes = { "rust" },
+    root_markers = { "rust-project.json", ".rustc", "Cargo.toml" },
+})
+
+-- Custom command for clangd, not defined in servers.c_cpp
+
+local clangd_cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+}
+
+-- Check if the user is on NixOS
 if vim.fn.isdirectory("/nix/store") == 1 then
-	table.insert(clangd_cmd, "--query-driver=/nix/store/*-gcc-wrapper-*/bin/g++,/nix/store/*-gcc-wrapper-*/bin/gcc")
+    table.insert(clangd_cmd, "--query-driver=/nix/store/*-gcc-wrapper-*/bin/g++,/nix/store/*-gcc-wrapper-*/bin/gcc")
 end
 
-vim.lsp.config("clangd", {
-	cmd = clangd_cmd,
-	filetypes = { "c", "cc", "cpp", "c++", "objc", "objcpp" },
+vim.lsp.config("c_cpp", {
+    cmd = clangd_cmd,
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    root_markers = { "compile_commands.json", ".git" }
 })
-vim.lsp.enable("clangd")
+
+-- If using another c/c++ lsp, comment out the clang configuration above and uncomment this
+-- vim.lsp.config("c_cpp", {
+--     cmd = servers.c_cpp,
+--     filetypes = { "c", "cpp", "objc", "objcpp" },
+--     root_markers = { "compile_commands.json", ".git" }
+-- })
+
+-- Enable available servers in the server object
+for server, bin in pairs(servers) do
+    if vim.fn.executable(bin) == 1 then
+        vim.lsp.enable(server)
+    end
+end

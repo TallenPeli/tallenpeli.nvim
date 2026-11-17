@@ -1,66 +1,34 @@
 return {
-	"saghen/blink.cmp",
-	dependencies = {
-		"saghen/blink.lib",
-		-- optional: provides snippets for the snippet source
-		"rafamadriz/friendly-snippets",
-	},
-	build = function()
-		require("blink.cmp").build():pwait()
-	end,
+    "saghen/blink.cmp",
+    dependencies = {
+        "saghen/blink.lib",
+        "rafamadriz/friendly-snippets",
+    },
+    version = '1.*',
 
-	require("blink.cmp").setup({
-		cmdline = {
-			enabled = true,
-			keymap = {
-				preset = "cmdline",
-			},
-			completion = {
-				menu = {
-					auto_show = true,
-				},
-				ghost_text = {
-					enabled = true,
-				},
-			},
-		},
-	}),
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+        -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+        -- 'super-tab' for mappings similar to vscode (tab to accept)
+        -- 'enter' for enter to accept
+        -- 'none' for no mappings
+        --
+        -- See :h blink-cmp-config-keymap for defining your own keymap
+        keymap = { preset = "enter" },
 
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
-	opts = {
-		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-		-- 'super-tab' for mappings similar to vscode (tab to accept)
-		-- 'enter' for enter to accept
-		-- 'none' for no mappings
-		--
-		-- All presets have the following mappings:
-		-- C-space: Open menu or open docs if already open
-		-- C-n/C-p or Up/Down: Select next/previous item
-		-- C-e: Hide menu
-		-- C-k: Toggle signature help (if signature.enabled = true)
-		--
-		-- See :h blink-cmp-config-keymap for defining your own keymap
-		keymap = { preset = "enter" },
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer" },
+        },
 
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-			-- providers = {
-			-- 	minuet = {
-			-- 		name = "minuet",
-			-- 		module = "minuet.blink",
-			-- 		async = true,
-			-- 		timeout_ms = 3000,
-			-- 		score_offset = 50,
-			-- 	},
-			-- },
-		},
+        fuzzy = { implementation = "rust" },
 
-		-- completion = {
-		-- 	documentation = { auto_show = true },
-		-- 	trigger = { prefetch_on_insert = false },
-		-- },
-
-		fuzzy = { implementation = "rust" },
-	},
+        -- cmdline config to automatically show
+        cmdline = {
+            keymap = {
+                ['<Tab>'] = { 'show', 'accept' },
+            },
+            completion = { menu = { auto_show = true } }
+        },
+    },
 }
