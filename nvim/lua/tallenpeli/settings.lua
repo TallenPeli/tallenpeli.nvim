@@ -1,7 +1,6 @@
 local state_dir = vim.fn.stdpath("state") .. "/tallenpeli.nvim"
 local state_file = state_dir .. "/settings.json"
 
-
 ---@class tallenpeli.Settings.Updates
 ---@field updatecheck boolean
 ---@field notify boolean
@@ -112,9 +111,28 @@ function M.open_menu()
                 }
             end
 
-            local icon = item.value and "󰄲 " or "󰄱 "
-            local status = item.value and "ON" or "OFF"
-            local hl = item.value and "DiagnosticOk" or "Comment"
+            local icon = ""
+            local status = "OFF"
+            local hl = ""
+
+            if type(item.value) == "boolean" then
+                icon = item.value and "󰄲 " or "󰄱 "
+                status = item.value and "ON" or "OFF"
+                hl = item.value and "DiagnosticOk" or "Comment"
+            elseif type(item.value) == "string" then
+                vim.ui.input({ prompt = item.key .. ": ", default = val }, function(input)
+                    if input ~= nil then
+                        local updated = M.load()
+                        updated[item.section][item.key] = input
+                        M.save(updated)
+                        picker:find({ refresh = true })
+                    end
+                end)
+            else
+                icon = "X "
+                status = tostring(item.value)
+                hl = "Error"
+            end
 
             return {
                 { "  " .. icon,                     hl },
