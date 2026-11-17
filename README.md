@@ -12,7 +12,7 @@ This config is designed for full-stack development, from front-end to back-end w
 
 tallenpeli.nvim includes a suite of features for seamless programming without having to worry about setup. Here are some of the features preconfigured in this config.
 
-### **LSPs (mason.nvim)**
+### **LSPs**
 
 <details>
     <summary>Click to expand</summary>

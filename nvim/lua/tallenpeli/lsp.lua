@@ -30,6 +30,8 @@ local servers = {
     lua = "lua-language-server",
     rust = "rust-analyzer",
     c_cpp = "clangd",
+    python = "pyright",
+    css = "cssls"
 }
 
 -- Automatically enable native completions when an LSP attached to a buffer

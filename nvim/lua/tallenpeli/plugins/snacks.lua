@@ -1,3 +1,5 @@
+local settings = require("tallenpeli.settings").load()
+
 return {
     "folke/snacks.nvim",
     priority = 1000,
@@ -16,7 +18,7 @@ return {
         notifier = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
-        scroll = { enabled = false },
+        scroll = { enabled = settings.ui.animations },
         statuscolumn = { enabled = true },
         words = { enabled = true },
 
@@ -29,7 +31,7 @@ return {
                         list = {
                             keys = {
                                 ["Z"] = false,
-                                ["ZZ"] = "close"
+                                ["ZZ"] = "cancel"
                             }
                         }
                     }

@@ -1,19 +1,35 @@
 local state_dir = vim.fn.stdpath("state") .. "/tallenpeli.nvim"
 local state_file = state_dir .. "/settings.json"
 
+
+---@class tallenpeli.Settings.Updates
+---@field updatecheck boolean
+---@field notify boolean
+
+---@class tallenpeli.Settings.UI
+---@field animations boolean
+---@field colorscheme string
+
+---@class tallenpeli.Settings
+---@field updates tallenpeli.Settings.Updates
+---@field ui tallenpeli.Settings.UI
+
 local M = {}
 
+---@type tallenpeli.Settings
 -- Add any new sections/settings here and they automatically appear in the UI
 local defaults = {
     updates = {
-        autoupdate = true,
+        updatecheck = true,
         notify = true,
     },
     ui = {
         animations = false,
+        colorscheme = "vscode"
     }
 }
 
+---@return tallenpeli.Settings
 function M.load()
     local file = io.open(state_file, "r")
     if not file then
@@ -29,6 +45,7 @@ function M.load()
     return vim.deepcopy(defaults)
 end
 
+---@param settings tallenpeli.Settings
 function M.save(settings)
     vim.fn.mkdir(state_dir, "p")
     local file = assert(io.open(state_file, "w"))
@@ -36,7 +53,7 @@ function M.save(settings)
     file:close()
 end
 
--- Interactive Snacks Picker Settings Menu
+---Interactive Snacks Picker Settings Menu
 function M.open_menu()
     local function build_items()
         local current = M.load()
