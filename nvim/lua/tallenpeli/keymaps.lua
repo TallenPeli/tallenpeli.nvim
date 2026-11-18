@@ -1,5 +1,5 @@
 local wk = require("which-key")
-local fmt = require("formatter")
+local fmt = require("conform")
 
 -- Switched to which-key to manage keymaps
 wk.add({
