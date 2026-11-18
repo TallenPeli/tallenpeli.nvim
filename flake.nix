@@ -28,6 +28,7 @@
           typescript-language-server
           rust-analyzer
           gopls
+          zls
           qt6.qtdeclarative # qmlls
 
           # --- Formatters / linters (see nvim/lua/tallenpeli/plugins/formatter.lua) ---
@@ -36,6 +37,7 @@
           isort
           black
           pylint
+          zig-zlint
           eslint_d
 
           # --- Treesitter parser builds ---
