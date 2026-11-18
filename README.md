@@ -158,6 +158,56 @@ git clone https://github.com/tallenpeli/tallenpeli.nvim && cd tallenpeli.nvim
 nvim
 ```
 
+## Nix / NixOS
+
+This repository is also a flake. It bundles Neovim with the language servers, formatters, pickers, Treesitter build tools, and clipboard/preview helpers that this config uses, so you do not have to add them to `home.packages` yourself.
+
+> [!NOTE]
+> Plugins are still managed by lazy.nvim and downloaded to `~/.local/share/nvim` on first launch, so the first run needs network access. Mason is not used.
+
+### Run it directly
+
+```bash
+nix run github:TallenPeli/tallenpeli.nvim
+```
+
+### Home Manager (recommended)
+
+```nix
+{
+  inputs.tallenpeli-nvim.url = "github:TallenPeli/tallenpeli.nvim";
+
+  # In your home-manager configuration:
+  imports = [ inputs.tallenpeli-nvim.homeManagerModules.default ];
+  programs.tallenpeli-nvim.enable = true;
+}
+```
+
+This installs Neovim with all runtime dependencies and links this repo's `nvim/` directory to `~/.config/nvim`. Do not also install `pkgs.neovim` or the package below, or you will have two packages providing an `nvim` binary.
+
+### Use the wrapped package
+
+If you do not use Home Manager, add the package to `home.packages` or `environment.systemPackages`:
+
+```nix
+home.packages = [
+  inputs.tallenpeli-nvim.packages.${pkgs.system}.default
+];
+```
+
+The package provides an `nvim` binary that loads this config from the Nix store, with all dependencies on `PATH`. Use either the Home Manager module or this package, not both.
+
+### Development shell
+
+```bash
+nix develop
+```
+
+### Notes
+
+- `GI_TYPELIB_PATH`, `PKG_CONFIG_PATH`, `OPENSSL_DIR`, and the GTK/OpenSSL packages are not needed by this config. They are for projects that build native GTK/OpenSSL bindings, not for Neovim or these plugins.
+- `flake.lock` pins nixpkgs. Run `nix flake update` to update it.
+
 ## Keybinds
 
 **Telescope**

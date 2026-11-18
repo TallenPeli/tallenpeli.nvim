@@ -1,6 +1,8 @@
 return {
     "brianhuster/live-preview.nvim",
-    require("livepreview.config").set({
-        picker = "snacks.picker"
-    })
+    config = function()
+        require("livepreview.config").set({
+            picker = "snacks.picker",
+        })
+    end,
 }
