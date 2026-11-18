@@ -39,6 +39,8 @@
           pylint
           zig-zlint
           eslint_d
+          rustfmt
+          nixfmt
 
           # --- Treesitter parser builds ---
           tree-sitter
@@ -57,7 +59,6 @@
           # --- Toolchains referenced by the config / README ---
           rustc
           cargo
-          rustfmt
           go
         ]
         ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
