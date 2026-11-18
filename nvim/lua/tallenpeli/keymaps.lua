@@ -12,11 +12,18 @@ wk.add({
         { "<leader>fG", function() Snacks.picker.git_log() end,      desc = "Search: Git Logs",        mode = "n" },
     },
 
+    -- Git Group
+    {
+        { "<leader>g",  group = "Git" },
+        { "<leader>gb", function() Snacks.picker.git_log() end, desc = "Git: Logs", mode = "n" },
+    },
+
     -- Snacks Explorer (sidebar)
     { "<leader>s", function() Snacks.explorer() end,                          desc = "Sidebar: Toggle",                mode = "n" },
 
     -- Editor binds
     { "<leader>e", vim.diagnostic.open_float,                                 desc = "Show line diagnostics",          mode = "n" },
+    { "<leader>t", function() Snacks.terminal.toggle() end,                   desc = "Terminal: Toggle",               mode = "n" },
 
     -- Config settings menu
     { "<leader>S", function() require("tallenpeli.settings").open_menu() end, desc = "tallenpeli.nvim: Open Settings", mode = "n" },
@@ -24,7 +31,7 @@ wk.add({
     -- Depricated
     {
         { "<leader>F", function() Snacks.picker.files() end,        desc = "[Depricated]: Find Files",        mode = "n" },
-        { "<leader>g", function() Snacks.picker.grep() end,         desc = "[Depricated]: Live Grep",         mode = "n" },
+        -- { "<leader>g", function() Snacks.picker.grep() end,         desc = "[Depricated]: Live Grep",         mode = "n" },
         { "<leader>b", function() Snacks.picker.grep_buffers() end, desc = "[Depricated]: Live Grep Buffers", mode = "n" },
     }
 })
@@ -39,7 +46,6 @@ vim.keymap.set("i", "<Tab>", function()
     end
     return "<Tab>"
 end, { expr = true, silent = true })
-
 vim.keymap.set("i", "<S-Tab>", function()
     if vim.fn.pumvisible() == 1 then
         return "<C-p>"

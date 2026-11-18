@@ -31,7 +31,11 @@ local servers = {
     rust = "rust-analyzer",
     c_cpp = "clangd",
     python = "pyright",
-    css = "cssls"
+    css = "vscode-css-language-server",
+    html = "vscode-html-language-server",
+    json = "vscode-json-language-server",
+    eslint = "vscode-eslint-language-server",
+    ts_ls = "typescript-language-server",
 }
 
 -- Automatically enable native completions when an LSP attached to a buffer
@@ -72,6 +76,63 @@ vim.lsp.config("rust", {
     cmd = { servers.rust },
     filetypes = { "rust" },
     root_markers = { "rust-project.json", ".rustc", "Cargo.toml" },
+})
+
+vim.lsp.config("python", {
+    cmd = { servers.python, "--stdio" },
+    filetypes = { "python" },
+    root_markers = {
+        "pyproject.toml",
+        "setup.py",
+        "setup.cfg",
+        "requirements.txt",
+        "Pipfile",
+        "pyrightconfig.json",
+        ".git",
+    },
+    workspace_required = false,
+})
+
+vim.lsp.config("css", {
+    cmd = { servers.css, "--stdio" },
+    filetypes = { "css", "scss", "less" },
+    root_markers = { "package.json", ".git" },
+    workspace_required = false,
+})
+
+vim.lsp.config("html", {
+    cmd = { servers.html, "--stdio" },
+    filetypes = { "html", "templ" },
+    root_markers = { "package.json", ".git" },
+    workspace_required = false,
+})
+
+vim.lsp.config("json", {
+    cmd = { servers.json, "--stdio" },
+    filetypes = { "json", "jsonc" },
+    root_markers = { ".git" },
+    workspace_required = false,
+})
+
+-- JavaScript / TypeScript
+vim.lsp.config("ts_ls", {
+    cmd = { servers.ts_ls, "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+})
+
+-- ESLint
+vim.lsp.config("eslint", {
+    cmd = { servers.eslint, "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
+    root_markers = {
+        ".eslintrc",
+        ".eslintrc.js",
+        ".eslintrc.json",
+        "eslint.config.js",
+        "eslint.config.mjs",
+        "package.json",
+    },
 })
 
 -- Custom command for clangd, not defined in servers.c_cpp

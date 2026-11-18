@@ -21,6 +21,7 @@ return {
         scroll = { enabled = settings.ui.animations },
         statuscolumn = { enabled = true },
         words = { enabled = true },
+        terminal = { enabled = true },
 
         -- Allow closing the file viewer with 'ZZ' instead of 'q'
         picker = {

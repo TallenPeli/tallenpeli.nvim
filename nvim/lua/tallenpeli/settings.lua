@@ -24,8 +24,8 @@ local defaults = {
     },
     ui = {
         animations = false,
-        colorscheme = "vscode"
-    }
+        colorscheme = "vscode",
+    },
 }
 
 ---@return tallenpeli.Settings
@@ -62,7 +62,6 @@ function M.open_menu()
         table.sort(sections)
 
         for _, section in ipairs(sections) do
-            -- Section Header row
             table.insert(items, {
                 text = section,
                 is_header = true,
@@ -73,37 +72,80 @@ function M.open_menu()
             table.sort(keys)
 
             for _, key in ipairs(keys) do
-                local val = current[section][key]
                 table.insert(items, {
                     text = section .. " " .. key,
                     is_header = false,
                     section = section,
                     key = key,
-                    value = val,
+                    value = current[section][key],
                 })
             end
         end
         return items
     end
 
-    local function toggle_selected(picker, item)
+    local function refresh(picker)
+        picker:find({ refresh = true })
+        -- Return focus to the picker after a vim.ui.input prompt
+        vim.schedule(function()
+            pcall(function()
+                picker:focus()
+            end)
+        end)
+    end
+
+    local function confirm(picker, item)
         if not item or item.is_header then
             return
         end
-        local current = M.load()
-        current[item.section][item.key] = not current[item.section][item.key]
-        M.save(current)
 
-        -- Refresh the list in-place so the checkbox updates immediately without closing
-        picker:find({ refresh = true })
+        local current = M.load()
+        local val = current[item.section][item.key]
+
+        -- Booleans: toggle in place
+        if type(val) == "boolean" then
+            current[item.section][item.key] = not val
+            M.save(current)
+            refresh(picker)
+            return
+        end
+
+        -- Strings / numbers: open a text field
+        if type(val) == "string" or type(val) == "number" then
+            vim.ui.input({
+                prompt = item.section .. "." .. item.key .. ": ",
+                default = tostring(val),
+            }, function(input)
+                if input == nil then -- cancelled
+                    refresh(picker)
+                    return
+                end
+
+                local new_value = input
+                if type(val) == "number" then
+                    new_value = tonumber(input)
+                    if new_value == nil then
+                        vim.notify(
+                            ("tallenpeli: '%s' is not a valid number"):format(input),
+                            vim.log.levels.ERROR
+                        )
+                        refresh(picker)
+                        return
+                    end
+                end
+
+                local updated = M.load()
+                updated[item.section][item.key] = new_value
+                M.save(updated)
+                refresh(picker)
+            end)
+        end
     end
 
     Snacks.picker({
-        title = "tallenpeli.nvim Settings (Enter to toggle)",
+        title = "tallenpeli.nvim Settings (Enter to toggle/edit)",
         layout = { preset = "select", preview = false },
-        finder = function()
-            return build_items()
-        end,
+        finder = build_items,
         format = function(item)
             if item.is_header then
                 return {
@@ -111,23 +153,20 @@ function M.open_menu()
                 }
             end
 
-            local icon = ""
-            local status = "OFF"
-            local hl = ""
+            local icon, status, hl
 
             if type(item.value) == "boolean" then
                 icon = item.value and "󰄲 " or "󰄱 "
                 status = item.value and "ON" or "OFF"
                 hl = item.value and "DiagnosticOk" or "Comment"
             elseif type(item.value) == "string" then
-                vim.ui.input({ prompt = item.key .. ": ", default = val }, function(input)
-                    if input ~= nil then
-                        local updated = M.load()
-                        updated[item.section][item.key] = input
-                        M.save(updated)
-                        picker:find({ refresh = true })
-                    end
-                end)
+                icon = "󰏫 "
+                status = item.value
+                hl = "String"
+            elseif type(item.value) == "number" then
+                icon = "󰎠 "
+                status = tostring(item.value)
+                hl = "Number"
             else
                 icon = "X "
                 status = tostring(item.value)
@@ -140,7 +179,7 @@ function M.open_menu()
                 { status,                           hl },
             }
         end,
-        confirm = toggle_selected,
+        confirm = confirm,
     })
 end
 
