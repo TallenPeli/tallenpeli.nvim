@@ -165,15 +165,17 @@ This repository is also a flake. It bundles Neovim with the language servers, fo
 > [!NOTE]
 > Plugins are still managed by lazy.nvim and downloaded to `~/.local/share/nvim` on first launch, so the first run needs network access. Mason is not used.
 
-### Run it directly
+### Test or use in a Nix shell
 
 ```bash
-nix run github:TallenPeli/tallenpeli.nvim
+nix shell github:TallenPeli/tallenpeli.nvim
+nvim
 ```
 
 ### Home Manager (recommended)
 
 ```nix
+# home.nix
 {
   inputs.tallenpeli-nvim.url = "github:TallenPeli/tallenpeli.nvim";
 
@@ -210,19 +212,19 @@ nix develop
 
 ## Keybinds
 
-**Telescope**
+**fzf-lua**
 
 You can open telescope and it's different search types by using the following keybinds.
 
-- `<Space>g` Opens the grep search view
-- `<Space>F` Opens the file search view
-- `<Space>b` Opens the buffers search view
+- `<Space>fg` Opens the grep search view
+- `<Space>ff` Opens the file search view
+- `<Space>fb` Opens the buffers search view
+- `<Space>fl` Opens the LSP symbols search view
 
 **Other Keybinds**
 
 - `<Space>e` Opens the error/debug line
-- `<Space>s` Toggles sidebar (neo-tree)
-- `<Space>ai` Toggles Supermaven (AI autocomplete)
+- `<Space>s` Toggles sidebar (snacks.explorer)
 
 This configuration uses standard vim/neovim keybinds.
 
@@ -232,6 +234,7 @@ This configuration uses standard vim/neovim keybinds.
 ## Themes
 
 - [VSCode](https://github.com/Mofiqul/vscode.nvim)
+- [Gruvbox](https://github.com/ellisonleao/gruvbox.nvim)
 - [Adwaita](https://github.com/Mofiqul/adwaita.nvim)
 - [Evergreen](https://github.com/comfysage/evergreen)
 - [Catppuccin](https://github.com/catppuccin/nvim)
