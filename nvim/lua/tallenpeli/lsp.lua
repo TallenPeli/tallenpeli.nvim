@@ -30,24 +30,13 @@ local servers = {
     lua = "lua-language-server",
     rust = "rust-analyzer",
     c_cpp = "clangd",
-    python = "pyright",
+    python = "pyright-langserver",
     css = "vscode-css-language-server",
     html = "vscode-html-language-server",
     json = "vscode-json-language-server",
     eslint = "vscode-eslint-language-server",
     ts_ls = "typescript-language-server",
 }
-
--- Automatically enable native completions when an LSP attached to a buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client and client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-        end
-    end,
-
-})
 
 vim.lsp.config("nix", {
     cmd = { servers.nix },
@@ -57,7 +46,7 @@ vim.lsp.config("nix", {
 
 vim.lsp.config("qml", {
     cmd = { servers.qml },
-    filetypes = { "qml", "qmljs" },
+    filetypes = { "qml" },
     root_markers = { ".qmlls.ini", "shell.qml", ".git" },
     on_init = function(client, _)
         if client.server_capabilities then
@@ -70,6 +59,7 @@ vim.lsp.config("lua", {
     cmd = { servers.lua },
     filetypes = { "lua", "luau" },
     root_markers = { ".luarc.json" },
+    workspace_required = false,
 })
 
 vim.lsp.config("rust", {
@@ -119,6 +109,7 @@ vim.lsp.config("ts_ls", {
     cmd = { servers.ts_ls, "--stdio" },
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+    workspace_required = false,
 })
 
 -- ESLint
@@ -156,7 +147,7 @@ vim.lsp.config("c_cpp", {
 
 -- If using another c/c++ lsp, comment out the clang configuration above and uncomment this
 -- vim.lsp.config("c_cpp", {
---     cmd = servers.c_cpp,
+--     cmd = { servers.c_cpp },
 --     filetypes = { "c", "cpp", "objc", "objcpp" },
 --     root_markers = { "compile_commands.json", ".git" }
 -- })
@@ -167,3 +158,14 @@ for server, bin in pairs(servers) do
         vim.lsp.enable(server)
     end
 end
+
+-- Automatically enable native completions when an LSP attached to a buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client:supports_method("textDocument/completion") then
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        end
+    end,
+
+})
