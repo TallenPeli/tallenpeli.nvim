@@ -60,6 +60,11 @@
           rustc
           cargo
           go
+
+          # --- Other tools referenced by installed plugins ---
+          tar
+          curl
+          unzip
         ]
         ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           wl-clipboard

@@ -25,7 +25,7 @@
 -- Language Servers
 local servers = {
 	-- <language_name> = "<executable_name>"
-	nix = "nixd",
+	nixd = "nixd",
 	qml = "qmlls",
 	lua_ls = "lua-language-server", -- The name is `lua_ls` specifically as a work around for lazydev
 	rust = "rust-analyzer",
@@ -39,7 +39,7 @@ local servers = {
 }
 
 vim.lsp.config("nixd", {
-	cmd = { servers.nix },
+	cmd = { servers.nixd },
 	filetypes = { "nix" },
 	root_markers = { "flake.nix", ".git" },
 })
