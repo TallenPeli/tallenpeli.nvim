@@ -62,7 +62,6 @@
           go
 
           # --- Other tools referenced by installed plugins ---
-          tar
           curl
           unzip
         ]
