@@ -98,7 +98,7 @@ wk.add({
 	{
 		"<leader>F",
 		function()
-			require("confirm").format({
+			require("conform").format({
 				lsp_fallback = true,
 				async = false,
 				timeout_ms = 1000,
