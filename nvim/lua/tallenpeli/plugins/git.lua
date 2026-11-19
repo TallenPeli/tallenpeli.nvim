@@ -114,39 +114,56 @@ function M.git_commit()
 		end,
 	})
 end
+
 function M.git_push()
-	vim.fn.jobstart({ "git", "push" }, {
-		on_stdout = function(_, data)
-			if data then
-				for _, line in ipairs(data) do
-					if line ~= "" then
-						vim.notify("git push: " .. line, vim.log.levels.INFO)
-					end
+	local output = {}
+
+	local function collect(_, data)
+		if data then
+			for _, line in ipairs(data) do
+				if line ~= "" then
+					table.insert(output, line)
 				end
 			end
-		end,
+		end
+	end
+
+	vim.fn.jobstart({ "git", "push" }, {
+		on_stdout = collect,
+		on_stderr = collect,
 		on_exit = function(_, exit_code)
+			local msg = table.concat(output, "\n")
 			if exit_code ~= 0 then
-				vim.notify("git push failed with code: " .. exit_code, vim.log.levels.ERROR)
+				vim.notify("git push failed:\n" .. msg, vim.log.levels.ERROR)
+			else
+				vim.notify(msg ~= "" and ("git push:\n" .. msg) or "git push: Done", vim.log.levels.INFO)
 			end
 		end,
 	})
 end
 
 function M.git_pull()
-	vim.fn.jobstart({ "git", "pull" }, {
-		on_stdout = function(_, data)
-			if data then
-				for _, line in ipairs(data) do
-					if line ~= "" then
-						vim.notify("git pull: " .. line, vim.log.levels.INFO)
-					end
+	local output = {}
+
+	local function collect(_, data)
+		if data then
+			for _, line in ipairs(data) do
+				if line ~= "" then
+					table.insert(output, line)
 				end
 			end
-		end,
+		end
+	end
+
+	vim.fn.jobstart({ "git", "pull" }, {
+		on_stdout = collect,
+		on_stderr = collect,
 		on_exit = function(_, exit_code)
+			local msg = table.concat(output, "\n")
 			if exit_code ~= 0 then
-				vim.notify("git pull failed with code: " .. exit_code, vim.log.levels.ERROR)
+				vim.notify("git pull failed:\n" .. msg, vim.log.levels.ERROR)
+			else
+				vim.notify("git pull:\n" .. msg)
 			end
 		end,
 	})
