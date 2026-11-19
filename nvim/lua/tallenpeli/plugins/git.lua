@@ -6,14 +6,14 @@ function M.git_add()
 			if data then
 				for _, line in ipairs(data) do
 					if line ~= "" then
-						vim.api.nvim_echo({ { "git add: " .. line, "None" } }, false, {})
+						vim.notify("git add: " .. line, vim.log.levels.INFO)
 					end
 				end
 			end
 		end,
 		on_exit = function(_, exit_code)
 			if exit_code ~= 0 then
-				print("git add failed with code: " .. exit_code)
+				vim.notify("git add failed with code: " .. exit_code, vim.log.levels.ERROR)
 			end
 		end,
 	})
@@ -26,14 +26,14 @@ function M.git_add_current_file()
 			if data then
 				for _, line in ipairs(data) do
 					if line ~= "" then
-						vim.api.nvim_echo({ { "git add: " .. line, "None" } }, false, {})
+						vim.notify("git add: " .. line, vim.log.levels.INFO)
 					end
 				end
 			end
 		end,
 		on_exit = function(_, exit_code)
 			if exit_code ~= 0 then
-				print("git add failed with code: " .. exit_code)
+				vim.notify("git add failed with code: " .. exit_code, vim.log.levels.ERROR)
 			end
 		end,
 	})
@@ -59,7 +59,7 @@ function M.git_commit()
 
 	local function on_commit_message_entered()
 		local commit_message = vim.api.nvim_buf_get_lines(commit_buf, 0, -1, false)
-		local commit_message_str = table.concat(commit_message, "\n")
+		local commit_message_str = table.concat(commit_message, "\n"):gsub("^Commit message: ", "")
 		vim.api.nvim_win_close(0, true)
 
 		vim.fn.jobstart({ "git", "commit", "-m", commit_message_str }, {
@@ -67,14 +67,14 @@ function M.git_commit()
 				if data then
 					for _, line in ipairs(data) do
 						if line ~= "" then
-							vim.api.nvim_echo({ { "git commit: " .. line, "None" } }, false, {})
+							vim.notify("git commit: " .. line, vim.log.levels.INFO)
 						end
 					end
 				end
 			end,
 			on_exit = function(_, exit_code)
 				if exit_code ~= 0 then
-					print("git commit failed with code: " .. exit_code)
+					vim.notify("git commit failed with code: " .. exit_code, vim.log.levels.ERROR)
 				end
 			end,
 		})
@@ -92,14 +92,14 @@ function M.git_push()
 			if data then
 				for _, line in ipairs(data) do
 					if line ~= "" then
-						vim.api.nvim_echo({ { "git push: " .. line, "None" } }, false, {})
+						vim.notify("git push: " .. line, vim.log.levels.INFO)
 					end
 				end
 			end
 		end,
 		on_exit = function(_, exit_code)
 			if exit_code ~= 0 then
-				print("git push failed with code: " .. exit_code)
+				vim.notify("git push failed with code: " .. exit_code, vim.log.levels.ERROR)
 			end
 		end,
 	})
@@ -111,14 +111,14 @@ function M.git_pull()
 			if data then
 				for _, line in ipairs(data) do
 					if line ~= "" then
-						vim.api.nvim_echo({ { "git pull: " .. line, "None" } }, false, {})
+						vim.notify("git pull: " .. line, vim.log.levels.INFO)
 					end
 				end
 			end
 		end,
 		on_exit = function(_, exit_code)
 			if exit_code ~= 0 then
-				print("git pull failed with code: " .. exit_code)
+				vim.notify("git pull failed with code: " .. exit_code, vim.log.levels.ERROR)
 			end
 		end,
 	})
