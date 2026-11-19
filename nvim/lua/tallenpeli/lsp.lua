@@ -26,7 +26,7 @@
 local servers = {
 	-- <language_name> = "<executable_name>"
 	nixd = "nixd",
-	qml = "qmlls",
+	qmlls = "qmlls",
 	lua_ls = "lua-language-server", -- The name is `lua_ls` specifically as a work around for lazydev
 	rust = "rust-analyzer",
 	c_cpp = "clangd",
