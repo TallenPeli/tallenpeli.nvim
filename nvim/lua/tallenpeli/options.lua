@@ -15,16 +15,16 @@ vim.g.mapleader = " " -- set leader to space
 vim.opt.clipboard = "unnamedplus"
 
 if vim.fn.executable("wl-copy") == 1 then
-    vim.g.clipboard = {
-        name = "wl-clipboard",
-        copy = {
-            ["+"] = "wl-copy",
-            ["*"] = "wl-copy",
-        },
-        paste = {
-            ["+"] = "wl-paste --no-newline",
-            ["*"] = "wl-paste --no-newline",
-        },
-        cache_enabled = 0,
-    }
+	vim.g.clipboard = {
+		name = "wl-clipboard",
+		copy = {
+			["+"] = "wl-copy",
+			["*"] = "wl-copy",
+		},
+		paste = {
+			["+"] = "wl-paste --no-newline",
+			["*"] = "wl-paste --no-newline",
+		},
+		cache_enabled = 0,
+	}
 end

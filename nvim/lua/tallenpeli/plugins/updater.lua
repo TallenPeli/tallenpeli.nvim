@@ -5,7 +5,7 @@ return {
 	config = function()
 		local update_script = vim.fn.expand("~/.config/nvim/update.sh")
 
-		local function run_update(is_startup)
+		local function run_update()
 			if vim.fn.filereadable(update_script) == 0 then
 				return
 			end
@@ -32,7 +32,7 @@ return {
 
 		vim.api.nvim_create_autocmd("VimEnter", {
 			callback = function()
-				run_update(true)
+				run_update()
 			end,
 		})
 	end,

@@ -21,7 +21,19 @@ return {
 		scroll = { enabled = settings.ui.animations },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
-		terminal = { enabled = true },
+
+		-- Open the terminal under the currently open file buffer
+		terminal = {
+			enabled = true,
+			win = {
+				position = "bottom",
+				relative = "win",
+				height = 0.25,
+				wo = {
+					winbar = "",
+				},
+			},
+		},
 
 		-- Allow closing the file viewer with 'ZZ' instead of 'q'
 		picker = {

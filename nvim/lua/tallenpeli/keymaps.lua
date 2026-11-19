@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local git = require("tallenpeli.plugins.git")
 
 -- Switched to which-key to manage keymaps
 wk.add({
@@ -56,6 +57,54 @@ wk.add({
 				Snacks.picker.git_log()
 			end,
 			desc = "Git: Logs",
+			mode = "n",
+		},
+		{
+			"<leader>ga",
+			function()
+				git.git_add()
+			end,
+			desc = "Git: Add All Changes",
+			mode = "n",
+		},
+		{
+			"<leader>gA",
+			function()
+				git.git_add_current_file()
+			end,
+			desc = "Git: Add Current File",
+			mode = "n",
+		},
+		{
+			"<leader>gc",
+			function()
+				git.git_commit()
+			end,
+			desc = "Git: Commit Changes",
+			mode = "n",
+		},
+		{
+			"<leader>gp",
+			function()
+				git.git_push()
+			end,
+			desc = "Git: Push Changes",
+			mode = "n",
+		},
+		{
+			"<leader>gP",
+			function()
+				git.git_pull()
+			end,
+			desc = "Git: Pull Changes",
+			mode = "n",
+		},
+		{
+			"<leader>gs",
+			function()
+				Snacks.picker.git_status()
+			end,
+			desc = "Git: Status",
 			mode = "n",
 		},
 	},

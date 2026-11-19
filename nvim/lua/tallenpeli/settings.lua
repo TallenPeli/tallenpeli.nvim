@@ -11,6 +11,7 @@ local state_file = state_dir .. "/settings.json"
 
 ---@class tallenpeli.Settings.AI
 ---@field supermaven boolean
+---@field copilot boolean
 
 ---@class tallenpeli.Settings
 ---@field updates tallenpeli.Settings.Updates
@@ -32,6 +33,7 @@ local defaults = {
 	},
 	ai = {
 		supermaven = false,
+		copilot = false,
 	},
 }
 
