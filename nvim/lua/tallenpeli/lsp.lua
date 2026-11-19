@@ -45,7 +45,7 @@ vim.lsp.config("nixd", {
 })
 
 vim.lsp.config("qmlls", {
-	cmd = { servers.qml },
+	cmd = { servers.qmlls },
 	filetypes = { "qml" },
 	root_markers = { ".qmlls.ini", "shell.qml", ".git" },
 	on_init = function(client, _)
