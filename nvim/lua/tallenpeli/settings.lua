@@ -10,7 +10,6 @@ local state_file = state_dir .. "/settings.json"
 ---@field colorscheme string
 
 ---@class tallenpeli.Settings.AI
----@field supermaven boolean
 ---@field copilot boolean
 
 ---@class tallenpeli.Settings
@@ -32,7 +31,6 @@ local defaults = {
 		colorscheme = "vscode",
 	},
 	ai = {
-		supermaven = false,
 		copilot = false,
 	},
 }
