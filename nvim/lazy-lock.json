@@ -103,10 +103,6 @@
     "branch": "master",
     "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e"
   },
-  "nvim-treesitter": {
-    "branch": "main",
-    "commit": "4916d6592ede8c07973490d9322f187e07dfefac"
-  },
   "nvim-ts-autotag": {
     "branch": "main",
     "commit": "88c1453db4ba7dd24131086fe51fdf74e587d275"

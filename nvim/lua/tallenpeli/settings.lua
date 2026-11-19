@@ -8,6 +8,7 @@ local state_file = state_dir .. "/settings.json"
 ---@class tallenpeli.Settings.UI
 ---@field animations boolean
 ---@field colorscheme string
+---@field barbar boolean Show bufferline (barbar.nvim) or not
 
 ---@class tallenpeli.Settings.AI
 ---@field copilot boolean
@@ -29,6 +30,7 @@ local defaults = {
 	ui = {
 		animations = false,
 		colorscheme = "vscode",
+		barbar = true,
 	},
 	ai = {
 		copilot = false,
