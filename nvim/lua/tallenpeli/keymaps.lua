@@ -51,7 +51,7 @@ wk.add({
 	{
 		{ "<leader>g", group = "Git" },
 		{
-			"<leader>gb",
+			"<leader>gl",
 			function()
 				Snacks.picker.git_log()
 			end,
@@ -104,7 +104,7 @@ wk.add({
 				timeout_ms = 1000,
 			})
 		end,
-		{ desc = "Format file or range (in visual mode)" },
+		desc = "Format file or range (in visual mode)",
 		mode = { "n", "v" },
 	},
 })
