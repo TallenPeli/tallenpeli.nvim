@@ -28,6 +28,12 @@ return {
 			enabled = true,
 			sources = {
 				explorer = {
+					layout = {
+						auto_hide = { "input" },
+						layout = {
+							width = 35,
+						},
+					},
 					win = {
 						list = {
 							keys = {
