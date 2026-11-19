@@ -9,9 +9,13 @@ local state_file = state_dir .. "/settings.json"
 ---@field animations boolean
 ---@field colorscheme string
 
+---@class tallenpeli.Settings.AI
+---@field supermaven boolean
+
 ---@class tallenpeli.Settings
 ---@field updates tallenpeli.Settings.Updates
 ---@field ui tallenpeli.Settings.UI
+---@field ai tallenpeli.Settings.AI
 
 local M = {}
 
@@ -25,6 +29,9 @@ local defaults = {
 	ui = {
 		animations = false,
 		colorscheme = "vscode",
+	},
+	ai = {
+		supermaven = false,
 	},
 }
 

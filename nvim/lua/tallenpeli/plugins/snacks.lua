@@ -11,7 +11,7 @@ return {
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
-		explorer = { enabled = false },
+		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
 		image = { enabled = true },
@@ -22,6 +22,22 @@ return {
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
 		terminal = { enabled = true },
-		picker = { enabled = true },
+
+		-- Allow closing the file viewer with 'ZZ' instead of 'q'
+		picker = {
+			enabled = true,
+			sources = {
+				explorer = {
+					win = {
+						list = {
+							keys = {
+								["Z"] = false,
+								["ZZ"] = "cancel",
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 }
